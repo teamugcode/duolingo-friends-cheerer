@@ -20,8 +20,8 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 - [ ] Create curl request to the server and run the app
 - [ ] Close server
 ####
-- [] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
+- [ ] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
 OR
-- [] Run on startup once a day
+- [ ] Run on startup once a day
 
 Let's see how many steps are missing from my planning. Wish me luck!
