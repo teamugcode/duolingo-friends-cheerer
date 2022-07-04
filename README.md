@@ -3,7 +3,7 @@ Receiving and giving cheers in Duolingo is very nice, but manually clicking chee
 <img width="807" alt="duolingo_friends_cheerer" src="https://user-images.githubusercontent.com/16792417/177190174-a569ec8b-9dc4-4727-9603-d533dbc9a858.png">
 
 ## Progress planning
-### Duolingo app
+### Duolingo NodeJS app
 Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library make the goal done
 - [ ] Init NodeJS app with required libraries
 - [ ] Enter the Duolingo website https://www.duolingo.com/
@@ -16,7 +16,7 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 
 ### Scheduled automation on Mac or Windows
 #### Create Bash script
-- [ ] Call Node.js server
+- [ ] Start Node.js server
 - [ ] Create curl request to the server and run the app
 - [ ] Close server
 ####
