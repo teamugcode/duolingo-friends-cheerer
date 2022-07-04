@@ -4,23 +4,23 @@ Receiving and giving cheers in Duolingo is very nice, but manually clicking chee
 
 ## Progress planning
 ### Duolingo app
-Trying first time Puppeteer library make the goal done
-- [] Init NodeJS app with required libraries
-- [] Enter the Duolingo website https://www.duolingo.com/
-- [] Reveal the login form from the "I already have a account" button
-- [] Fill the login form
-- [] Successfully open the profile page after login
-- [] Navigate to Friend updates page
-- [] Find all of the cheer buttons not clicked yet
-- [] Loop and click the buttons
+Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library make the goal done
+- [ ] Init NodeJS app with required libraries
+- [ ] Enter the Duolingo website https://www.duolingo.com/
+- [ ] Reveal the login form from the "I already have a account" button
+- [ ] Fill the login form
+- [ ] Successfully open the profile page after login
+- [ ] Navigate to Friend updates page
+- [ ] Find all of the cheer buttons not clicked yet
+- [ ] Loop and click the buttons
 
 ### Scheduled automation on Mac or Windows
 #### Create Bash script
-- [] Call Node.js server
-- [] Create curl request to the server
-- [] Close server
+- [ ] Call Node.js server
+- [ ] Create curl request to the server and run the app
+- [ ] Close server
 ####
-- [] Schedule on mac somehow (Automator app + iCal seems to be one alternative)
+- [] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
 OR
 - [] Run on startup once a day
 
