@@ -1,0 +1,19 @@
+{
+  "name": "duolingo-friends-cheerer",
+  "version": "1.0.0",
+  "description": "App to click duolingo friend updates automatically",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/teamugcode/duolingo-friends-cheerer.git"
+  },
+  "author": "Teamugcode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teamugcode/duolingo-friends-cheerer/issues"
+  },
+  "homepage": "https://github.com/teamugcode/duolingo-friends-cheerer#readme"
+}
