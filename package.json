@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/teamugcode/duolingo-friends-cheerer/issues"
   },
-  "homepage": "https://github.com/teamugcode/duolingo-friends-cheerer#readme"
+  "homepage": "https://github.com/teamugcode/duolingo-friends-cheerer#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
