@@ -11,9 +11,9 @@ Receiving and giving cheers in Duolingo is very nice, but manually clicking chee
 Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library make the goal done
 - [x] Init NodeJS app with required libraries
 - [x] Enter the Duolingo website https://www.duolingo.com/
-- [ ] Reveal the login form from the "I already have a account" button
-- [ ] Fill the login form
-- [ ] Successfully open the profile page after login
+- [x] Reveal the login form from the "I already have a account" button
+- [x] Fill the login form
+- [x] Successfully open the profile page after login
 - [ ] Navigate to Friend updates page
 - [ ] Find all of the cheer buttons not clicked yet
 - [ ] Loop and click the buttons
