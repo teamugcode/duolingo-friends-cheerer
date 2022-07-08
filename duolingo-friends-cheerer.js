@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const puppeteer = require("puppeteer");
 
@@ -11,8 +12,19 @@ const app = express();
  * Address http://localhost:4000/cheer-friends?url=https://www.duolingo.com
  */
 app.get("/cheer-friends", async function (req, res) {
-    console.log("starting browser");
+    // Define variables
+    const email = process?.env?.USER_EMAIL;
+    const password = process?.env?.USER_PASSWORD;
+
+    // Debug if email and password is set
+    if (email && password) {
+        console.log("email and password set");
+    } else {
+        console.warn("email and password not set");
+    }
+
     // Start browser
+    console.log("starting browser");
     const browser = await puppeteer.launch();
 
     // Start new page
@@ -48,7 +60,44 @@ app.get("/cheer-friends", async function (req, res) {
     console.log("should have clicked");
 
     // Wait short time when the (react) page updates
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
+
+    // Wait for the form input selectors
+    await page.waitForFunction(() => {
+        const selectors = [
+            'input[data-test="email-input"]',
+            'input[data-test="password-input"]',
+            'button[data-test="register-button"]',
+        ];
+        return selectors.every(
+            (selector) => document.querySelector(selector)?.clientHeight > 0
+        );
+    });
+
+    // Debug if the form selectors exists
+    console.log("form input fields found");
+
+    // Focus and type email and password to the input fields
+    await page.focus('input[data-test="email-input"]');
+    await page.type('input[data-test="email-input"]', email);
+    await page.focus('input[data-test="password-input"]');
+    await page.type('input[data-test="password-input"]', password);
+
+    // Debug if the form inputs are filled
+    console.log("email and password set to the form inputs");
+
+    // Focus and click login button
+    await page.focus('button[data-test="register-button"]');
+    await page.click('button[data-test="register-button"]');
+
+    // Debug if login button is clicked
+    console.log("login button clicked");
+
+    // Wait for login
+    await page.waitForNavigation({ waitUntil: "networkidle2" });
+
+    // Add extra timeout make sure login page is loaded before continuing
+    await page.waitForTimeout(2000);
 
     console.log("starting to capture a screenshot");
     // Start capturing a screenshot
