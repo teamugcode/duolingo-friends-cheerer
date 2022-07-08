@@ -15,6 +15,7 @@ app.get("/cheer-friends", async function (req, res) {
     // Define variables
     const email = process?.env?.USER_EMAIL;
     const password = process?.env?.USER_PASSWORD;
+    const profileName = process?.env?.DUOLINGO_PROFILENAME;
 
     // Debug if email and password is set
     if (email && password) {
@@ -60,7 +61,7 @@ app.get("/cheer-friends", async function (req, res) {
     console.log("should have clicked");
 
     // Wait short time when the (react) page updates
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1500);
 
     // Wait for the form input selectors
     await page.waitForFunction(() => {
@@ -98,6 +99,39 @@ app.get("/cheer-friends", async function (req, res) {
 
     // Add extra timeout make sure login page is loaded before continuing
     await page.waitForTimeout(2000);
+
+    console.log("profileName", profileName);
+    // Wait for profile link selector
+    await page.waitForFunction(
+        (profileName) => {
+            if (!profileName) {
+                console.warn("No profileName set !");
+            }
+            const selectors = [`a[href="/profile/${profileName}"]`];
+            return selectors.every(
+                (selector) => document.querySelector(selector)?.clientHeight > 0
+            );
+        },
+        {},
+        profileName
+    );
+
+    // Debug if profile link found
+    if ((await page.$(`a[href="/profile/${profileName}"]`)) !== null) {
+        console.log("found a href");
+    } else {
+        console.log("not found a href");
+    }
+
+    // Focus and click profile link
+    await page.focus(`a[href="/profile/${profileName}"]`);
+    await page.click(`a[href="/profile/${profileName}"]`);
+
+    // Add extra timeout to wait profile page loading (needs time because it has a lot of data)
+    await page.waitForTimeout(3500);
+
+    // Debug if profile page is reached
+    console.log("arrived to profile page");
 
     console.log("starting to capture a screenshot");
     // Start capturing a screenshot
