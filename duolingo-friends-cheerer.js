@@ -133,6 +133,31 @@ app.get("/cheer-friends", async function (req, res) {
     // Debug if profile page is reached
     console.log("arrived to profile page");
 
+    // Wait for friend updates link selector
+    await page.waitForFunction(() => {
+        const selectors = [`a[href="/friend-updates"]`];
+        return selectors.every(
+            (selector) => document.querySelector(selector)?.clientHeight > 0
+        );
+    });
+
+    // Debug if friend updates link found
+    if ((await page.$(`a[href="/friend-updates"]`)) !== null) {
+        console.log("found a href friend-updates");
+    } else {
+        console.log("not found a href friend-updates");
+    }
+
+    // Focus and click friend updates link
+    await page.focus(`a[href="/friend-updates"]`);
+    await page.click(`a[href="/friend-updates"]`);
+
+    // Add extra timeout to wait profile page loading (needs time because it has a lot of data)
+    await page.waitForTimeout(2000);
+
+    // Debug if friend updates page is reached
+    console.log("arrived to friend updates page");
+
     console.log("starting to capture a screenshot");
     // Start capturing a screenshot
     const screenshotBuffer = await page.screenshot();
