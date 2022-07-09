@@ -61,7 +61,7 @@ app.get("/cheer-friends", async function (req, res) {
     console.log("should have clicked");
 
     // Wait short time when the (react) page updates
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(1800);
 
     // Wait for the form input selectors
     await page.waitForFunction(() => {
@@ -158,8 +158,57 @@ app.get("/cheer-friends", async function (req, res) {
     // Debug if friend updates page is reached
     console.log("arrived to friend updates page");
 
-    console.log("starting to capture a screenshot");
+    // Wait for cheer button selectors (all and not clicked yet)
+    await page.waitForFunction(() => {
+        const selectors = [`button._23mZA:not(.t1Hcp)`, "button._23mZA"];
+        return selectors.every(
+            (selector) => document.querySelector(selector)?.clientHeight > 0
+        );
+    });
+
+    // Debug if cheer button selectors link found
+    if ((await page.$("button._23mZA:not(.t1Hcp)")) !== null) {
+        console.log("found a href friend-updates");
+    } else {
+        console.log("not found a href friend-updates");
+    }
+
+    // Get count of cheer buttons
+    let cheerButtonsNotClickedCount = await page.$$eval(
+        "button._23mZA:not(.t1Hcp)",
+        (buttons) => buttons?.length ?? 0
+    );
+    const cheerButtonsTotalCount = await page.$$eval(
+        "button._23mZA",
+        (buttons) => buttons.length
+    );
+
+    // Debug button amounts (total and not clicked)
+    console.log("cheerButtonsNotClickedCount: ", cheerButtonsNotClickedCount);
+    console.log("cheerButtonsTotalCount: ", cheerButtonsTotalCount);
+
+    // Get all friend update items
+    const friendUpdateItems = await page.$$("._2vsBg");
+
+    // Loop, focus and click cheer buttons
+    if (cheerButtonsNotClickedCount > 0 && friendUpdateItems.length > 0) {
+        console.log("looping and clicking cheer buttons");
+        for (let i = 0; i < friendUpdateItems.length; i++) {
+            const button = await friendUpdateItems[i].$(
+                "button._23mZA:not(.t1Hcp)"
+            );
+
+            // Click and focus if button found
+            if (button) {
+                console.log("focusing and clicking button");
+                await button.focus();
+                await button.click();
+            }
+        }
+    }
+
     // Start capturing a screenshot
+    console.log("starting to capture a screenshot");
     const screenshotBuffer = await page.screenshot();
 
     // Respond with image
