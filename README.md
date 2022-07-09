@@ -14,9 +14,9 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 - [x] Reveal the login form from the "I already have a account" button
 - [x] Fill the login form
 - [x] Successfully open the profile page after login
-- [ ] Navigate to Friend updates page
-- [ ] Find all of the cheer buttons not clicked yet
-- [ ] Loop and click the buttons
+- [x] Navigate to Friend updates page
+- [x] Find all of the cheer buttons not clicked yet
+- [x] Loop and click the buttons
 
 ### Scheduled automation on Mac or Windows
 #### Create Bash script
