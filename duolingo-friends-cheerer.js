@@ -61,7 +61,7 @@ app.get("/cheer-friends", async function (req, res) {
     console.log("should have clicked");
 
     // Wait short time when the (react) page updates
-    await page.waitForTimeout(1800);
+    await page.waitForTimeout(2000);
 
     // Wait for the form input selectors
     await page.waitForFunction(() => {
@@ -153,7 +153,7 @@ app.get("/cheer-friends", async function (req, res) {
     await page.click(`a[href="/friend-updates"]`);
 
     // Add extra timeout to wait profile page loading (needs time because it has a lot of data)
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(2500);
 
     // Debug if friend updates page is reached
     console.log("arrived to friend updates page");
