@@ -19,10 +19,10 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 - [x] Loop and click the buttons
 
 ### Scheduled automation on Mac or Windows
-#### Create Bash script
-- [ ] Start Node.js server
-- [ ] Create curl request to the server and run the app
-- [ ] Close server
+#### Create Bash script -> Created ass an applescript
+- [x] Start Node.js server
+- [x] Create curl request to the server and run the app
+- [x] Close server
 ####
 - [ ] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
 OR
