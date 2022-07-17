@@ -1,0 +1,54 @@
+-- This applescript runs on two iterm terminal app windows.
+--
+-- 1. window:
+-- Goes to project path and starts the node server.
+--
+-- 2. window:
+-- Waits node server to start.
+-- Sends curl request to the server to start duolingo automation script
+-- Closes the node js server
+-- Closes iterm terminal app
+
+# create variable to duolingo-friends-cheerer app path
+# todo: add project path from your computer
+set projectPath to ""
+
+# handle iterm terminal app
+tell application "iTerm"
+	
+	# start iterm by creating a window to access
+	set newWindow to (create window with default profile)
+	
+	# create new session for current window
+	tell current tab of current window
+		set _new_session to last item of sessions
+	end tell
+	
+	# do the functionality with this window
+	tell _new_session
+		# start new window for node server
+		select
+		write text "cd " & projectPath
+		write text "node duolingo-friends-cheerer.js"
+	end tell
+	
+	# create new session to start new window
+	tell current tab of current window
+		set _new_session to last item of sessions
+	end tell
+	
+	# do the functionality with this window
+	tell _new_session
+		select
+		# wait until a process is running on port 4000
+		repeat until (do shell script "echo $(lsof -ti tcp:4000)") ≠ ""
+		end repeat
+		# create curl request for the server
+		write text "curl 'http://localhost:4000/cheer-friends?url=https://www.duolingo.com' --output /dev/null"
+		# kill the node server from port 4000
+		write text "kill -9 $(lsof -ti tcp:4000)"
+		# force close iterm terminal
+		write text "kill -9 $(ps aux | grep -i iTerm2)"
+	end tell
+	
+end tell
