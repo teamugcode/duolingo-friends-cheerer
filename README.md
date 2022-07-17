@@ -24,8 +24,33 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 - [x] Create curl request to the server and run the app
 - [x] Close server
 ####
-- [ ] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
+- [x] Schedule on mac somehow (Automator app + iCal seems to be one alternative based on fast googling)
 OR
-- [ ] Run on startup once a day
+~~ - [ ] Run on startup once a day ~~
 
 Let's see how many steps are missing from my planning. Wish me luck!
+
+## Result
+
+This is about how it works currently
+
+1. MacOs Launchd agent takes care of running code daily on specific time or at the latest when computer is running.
+
+2. Script made by AppleScript language: 
+- Starts terminal app with two separate windows
+- Starts Node.js server
+- Waits Node.js server to run
+- Sends a curl request to server to start the actual automation functionality
+- Closes Node.js server
+- Closes terminal windows
+
+3. Node.js app
+- Starts a browser and navigates Duolingo website
+- Reveals login form
+- Fills login information and logs in
+- Navigates sto profile page by clicking a link
+- Navigates to Friend updates page by clicking a link
+- Find, loop and clicks all the cheer buttons not clicked yet
+
+## How to use
+Instructions coming later
