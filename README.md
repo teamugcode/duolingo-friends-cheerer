@@ -19,7 +19,7 @@ Trying first time [Puppeteer](https://github.com/puppeteer/puppeteer) library ma
 - [x] Loop and click the buttons
 
 ### Scheduled automation on Mac or Windows
-#### Create Bash script -> Created ass an applescript
+#### Create Bash script -> Created as an applescript
 - [x] Start Node.js server
 - [x] Create curl request to the server and run the app
 - [x] Close server
