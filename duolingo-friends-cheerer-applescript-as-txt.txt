@@ -19,7 +19,7 @@ tell application "iTerm"
 	# start iterm by creating a window to access
 	set newWindow to (create window with default profile)
 	
-	# create new session for current window
+	# create new session for the current window
 	tell current tab of current window
 		set _new_session to last item of sessions
 	end tell
@@ -30,9 +30,13 @@ tell application "iTerm"
 		select
 		write text "cd " & projectPath
 		write text "node duolingo-friends-cheerer.js"
+		write text "exit"
 	end tell
+
+	# create another iterm window
+	set newWindow to (create window with default profile)
 	
-	# create new session to start new window
+	# create new session to for the current window
 	tell current tab of current window
 		set _new_session to last item of sessions
 	end tell
@@ -47,8 +51,9 @@ tell application "iTerm"
 		write text "curl 'http://localhost:4000/cheer-friends?url=https://www.duolingo.com' --output /dev/null"
 		# kill the node server from port 4000
 		write text "kill -9 $(lsof -ti tcp:4000)"
+		write text "exit"
 		# force close iterm terminal
-		write text "kill -9 $(ps aux | grep -i iTerm2)"
+		# write text "kill -9 $(ps aux | grep -i iTerm2)"
 	end tell
 	
 end tell
